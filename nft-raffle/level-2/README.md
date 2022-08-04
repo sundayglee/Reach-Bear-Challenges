@@ -1,8 +1,6 @@
 ### NFT Raffle Bear Challenge - Level 2
 
-This is a repo for level 2 of the NFT Raffle challenge as per the video found here: [NFT Raffle | Reach [Workshops]](https://www.youtube.com/watch?v=vqZGqPtIrrohttps:/)
-
-Go through the video to understand how the raffle works.
+This is a repo for level 2 of the NFT Raffle challenge as per instructions found here: [NFT Raffle | Reach [Workshops]](https://drive.google.com/file/d/17ZNHSf4liJAGuadIGwy36FGayCI4O9uL/view)
 
 #### Sample Output
 
