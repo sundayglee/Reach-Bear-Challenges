@@ -1,0 +1,95 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+
+### The Vault
+the-vault/level-3/node_modules
+the-vault/level-3/.pnp
+the-vault/level-3/.pnp.js
+
+# testing
+the-vault/level-3/
+# next.js
+the-vault/level-3/.next/
+the-vault/level-3/out/
+
+# production
+the-vault/level-3/build
+
+# misc
+the-vault/level-3/.DS_Store
+the-vault/level-3/*.pem
+
+# debug
+the-vault/level-3/npm-debug.log*
+the-vault/level-3/yarn-debug.log*
+the-vault/level-3/yarn-error.log*
+the-vault/level-3/.pnpm-debug.log*
+
+# local env files
+the-vault/level-3/.env*.local
+
+# vercel
+the-vault/level-3/.vercel
+
+the-vault/reach-backend/.reach
+the-vault/reach-backend/build/
+the-vault/reach-backend/node_modules/
+the-vault/reach-backend/tls/
+
+### --------------------------------------------------------------------------
+## NFT Raffle
+###
+nft-raffle/.vscode/
+nft-raffle/level-3/node_modules
+nft-raffle/level-3/.pnp
+nft-raffle/level-3/.pnp.js
+
+# testing
+nft-raffle/level-3/
+# next.js
+nft-raffle/level-3/.next/
+nft-raffle/level-3/out/
+
+# production
+nft-raffle/level-3/build
+
+# misc
+nft-raffle/level-3/.DS_Store
+nft-raffle/level-3/*.pem
+
+# debug
+nft-raffle/level-3/npm-debug.log*
+nft-raffle/level-3/yarn-debug.log*
+nft-raffle/level-3/yarn-error.log*
+nft-raffle/level-3/.pnpm-debug.log*
+
+# local env files
+nft-raffle/level-3/.env*.local
+
+# vercel
+nft-raffle/level-3/.vercel
+
+reach-backend/.reach
+reach-backend/build/
+reach-backend/node_modules/
+reach-backend/tls/
+
+
+## Reach Level 3
+nft-raffle/level-3/reach-backend/.reach/
+nft-raffle/level-3/reach-backend/build/
+nft-raffle/level-3/reach-backend/node_modules/
+nft-raffle/level-3/reach-backend/tls/
+
+## Reach Level 2
+nft-raffle/level-2/reach-backend/.reach/
+nft-raffle/level-2/reach-backend/build/
+nft-raffle/level-2/reach-backend/node_modules/
+nft-raffle/level-2/reach-backend/tls/
+
+## Reach Level 2
+nft-raffle/level-1/reach-backend/.reach/
+nft-raffle/level-1/reach-backend/build/
+nft-raffle/level-1/reach-backend/node_modules/
+nft-raffle/level-1/reach-backend/tls/
