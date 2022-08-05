@@ -24,3 +24,14 @@ The winning number is: 2
 The outcome is: Your number is not a match
 Goodbye, Alice and Bob!
 ```
+
+
+```js
+Error: invalid address or ENS name (argument="name", value=9.043528250887516e+47, code=INVALID_ARGUMENT, version=contracts/5.6.2)
+    at b.makeError (reachsdk.min.js?7077:2:1023584)
+    at b.throwError (reachsdk.min.js?7077:2:1023701)
+    at b.throwArgumentError (reachsdk.min.js?7077:2:1023755)
+    at eval (reachsdk.min.js?7077:2:1122235)
+    at Generator.next (<anonymous>)
+    at a (reachsdk.min.js?7077:2:1121737)
+```

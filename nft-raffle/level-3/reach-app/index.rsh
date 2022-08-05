@@ -27,7 +27,8 @@ export const main = Reach.App(() => {
   const B = API('Bobs', {
     // Specify Bob's interact interface here
     playNum: Fun([UInt], Bool),
-    seeOutcome: Fun([], UInt)
+    seeOutcome: Fun([], UInt),
+    optIn: Fun([], Token)
   });
 
   const C = API('Winner', {
@@ -56,7 +57,9 @@ export const main = Reach.App(() => {
   const p = Array.replicate(NUM_OF_TICKETS, v);
   const numPlayed = new Map(UInt);
 
-  const [keepGoing, q, howMany] = parallelReduce([true, p,  0])
+  const payExpr = (t) => [0, [t, nftId]];
+
+  const [keepGoing, q, howMany] = parallelReduce([true, p, 0])
     .invariant(balance() == 0)
     .while(keepGoing)
     .api(
@@ -67,19 +70,19 @@ export const main = Reach.App(() => {
         assume(isNone(numPlayed[this]))
       }),
       // Payments Expressinn
-      ((_) => 0),
+      ((_) => payExpr(0)),
       // Consensus Expressinn
       ((num, reply) => {
         require(this != A, 'A deployer cannot participate');
         require(isNone(numPlayed[this]))
-       // reply(num);
-       
+        // reply(num);
+
         const maxR = howMany < NUM_OF_USERS ? true : false
 
         const i = howMany % NUM_OF_TICKETS;
         const s = Foldable.includes(q, num)
 
-        if(s) {
+        if (s) {
           // The number was taken already, so choose another one
           reply(false);
         } else {
@@ -90,9 +93,16 @@ export const main = Reach.App(() => {
 
         const pn = Array.set(q, i, num)
 
-        return [maxR, pn, s == false ? howMany + 1 : howMany ];
+        return [maxR, pn, s == false ? howMany + 1 : howMany];
       })
     )
+    .api_(B.optIn, () => {      
+      return [ payExpr(0), (k) => {
+        k(nftId);
+        
+        return [ true, q, howMany ];
+      }];
+    })
     .timeout(relativeTime(deadline), () => {
       Anybody.publish();
       return [false, q, howMany];
@@ -130,12 +140,12 @@ export const main = Reach.App(() => {
         require(this != A, 'A deployer cannot participate');
         require(amt > 0, 'Amount insufficient for transfer');
         require(balance(nftId) > 0, 'NFT Balance insufficient for transfer');
-        const wN = (numPlayed[this] == MUInt.Some(winningNum)) ? WINNER: LOOSER;
+        const wN = (numPlayed[this] == MUInt.Some(winningNum)) ? WINNER : LOOSER;
         reply(wN);
 
-        if (wN == WINNER) {          
-          transfer([0, [amt, nftId]]).to(this);          
-        } 
+        if (wN == WINNER) {
+          transfer([0, [amt, nftId]]).to(this);
+        }
 
         const maxR = hM < tP ? true : false
         return [maxR, hM + 1];

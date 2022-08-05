@@ -29,8 +29,7 @@ const showBalances = async (acc, who) => {
     ]);
 
     console.log(
-      `${who} has ${fmt(netAmnt)} ${
-        stdlib.standardUnit
+      `${who} has ${fmt(netAmnt)} ${stdlib.standardUnit
       } and ${nftAmnt} ${theNFT.name}`
     );
   } catch (error) {
@@ -46,34 +45,39 @@ let mode = 0;
 let done = false;
 const processBobs = async () => {
   const play = async (who, acc) => {
-    await acc.tokenAccept(nftParams.nftId);
+
     players.push([who, acc]);
-  
+
     const ctc = acc.contract(backend, ctcAlice.getInfo());
-  
-    if(mode == 0) {
-        while(true) {
-          try {        
-            const num = Math.floor(Math.random() * nftParams.numTickets) + 1;
-            console.log(`${who} played: ${num}`);
-            const p = await ctc.apis.Bobs.playNum(num);
-    
-            if(p) {
-              console.log(`${num} not taken yet.`)
-              break;
-            } else {
-              console.log(`${num} has already being taken.`)          
-            }
+
+    if (mode == 0) {
+       
+      const nftId = await ctc.apis.Bobs.optIn();
+      await acc.tokenAccept(nftId);
+      stdlib.wait(1)
+
+      while (true) {
+        try {
+          const num = Math.floor(Math.random() * nftParams.numTickets) + 1;
+          console.log(`${who} played: ${num}`);
+          const p = await ctc.apis.Bobs.playNum(num);
+
+          if (p) {
+            console.log(`${num} not taken yet.`)
+            break;
+          } else {
+            console.log(`${num} has already being taken.`)
+          }
           //  console.log(`${who} playeddd: ${p}`)
 
-          } catch (e) {
-            console.log(e)
-            console.log(`${who} failed due to error`);
-          }
-
-          stdlib.wait(1)          
+        } catch (e) {
+          console.log(e)
+          console.log(`${who} failed due to error`);
         }
-     
+
+        stdlib.wait(1)
+      }
+
     } else {
       try {
         const winNum = await ctc.apis.Winner.showWinner();
@@ -81,8 +85,9 @@ const processBobs = async () => {
 
         const num = await ctc.apis.Bobs.seeOutcome();
         console.log(`${who} ${OUTCOME[num]}`);
-      
+
       } catch (e) {
+        console.log(e)
         console.log(`${who} failed due to error`);
       }
     }
@@ -94,8 +99,8 @@ const processBobs = async () => {
   await play('Player 2', players[1]);
   await play('Player 3', players[2]);
 
-  while ( ! done ) {
-      await stdlib.wait(1);
+  while (!done) {
+    await stdlib.wait(1);
   }
 }
 
@@ -119,7 +124,7 @@ await ctcAlice.participants.Alice({
   playingOver: (winNum) => {
     console.log(`Winning number is: ${winNum}`);
     mode = 1;
-    processBobs();    
+    processBobs();
   }
   // implement Alice's interact object here
 });
