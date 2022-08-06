@@ -39,7 +39,7 @@ the-vault/reach-backend/tls/
 
 ### --------------------------------------------------------------------------
 ## NFT Raffle
-###
+###=
 nft-raffle/.vscode/
 nft-raffle/level-3/node_modules
 nft-raffle/level-3/.pnp
@@ -77,10 +77,11 @@ reach-backend/tls/
 
 
 ## Reach Level 3
-nft-raffle/level-3/reach-backend/.reach/
-nft-raffle/level-3/reach-backend/build/
-nft-raffle/level-3/reach-backend/node_modules/
-nft-raffle/level-3/reach-backend/tls/
+nft-raffle/level-3/.vscode
+nft-raffle/level-3/reach-app/.reach/
+nft-raffle/level-3/reach-app/build/
+nft-raffle/level-3/reach-app/node_modules/
+nft-raffle/level-3/reach-app/tls/
 
 ## Reach Level 2
 nft-raffle/level-2/reach-backend/.reach/
