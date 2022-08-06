@@ -51,9 +51,6 @@ nft-raffle/level-3/
 nft-raffle/level-3/.next/
 nft-raffle/level-3/out/
 
-# production
-nft-raffle/level-3/build
-
 # misc
 nft-raffle/level-3/.DS_Store
 nft-raffle/level-3/*.pem
